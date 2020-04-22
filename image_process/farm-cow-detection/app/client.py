@@ -5,7 +5,7 @@ from azure.storage.blob import BlockBlobService, ContentSettings
 from threading import Thread
 import time
 import sys
-from predict import initialize, predict_image
+from .predict import initialize, predict_image
 
 print("Azure Blob storage v12 - Python quickstart sample")
 
