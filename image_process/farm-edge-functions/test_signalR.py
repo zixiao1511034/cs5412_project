@@ -14,7 +14,7 @@ jti: jwt的唯一身份标识，主要用来作为一次性token,从而回避重
 """
 #https://jwt.io/
 #http://sonicguo.com/2018/Azure-SignalR-Service-REST-API-Call/
-accesskey = "mlZbIlFbnc0tUFbdIZ300LMaVuzEMGys5Cyg4/mS+/w="
+accesskey = "signalRKey"
 payload = {
   "exp": 1588016543,
   "aud": "https://cow-signalr.service.signalr.net/api/v1/hubs/imageclassification"
