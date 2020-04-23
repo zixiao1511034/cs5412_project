@@ -1,0 +1,177 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Which cow???</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    body {
+      min-height: 75rem;
+      padding-top: 100px;
+    }
+
+    .em,
+    .emoji {
+      font-size: 60px;
+    }
+
+    .slide-fade-enter-active,
+    .slide-fade-leave-active {
+      transition: all .5s ease;
+    }
+
+    .slide-fade-enter,
+    .slide-fade-leave-to {
+      /* transform: translateX(60px); */
+      height: 0px;
+      overflow-y: hidden;
+      opacity: 0;
+    }
+
+    .jumbotron img {
+      max-height: 200px;
+    }
+
+    .jumbotron {
+      padding: 2rem;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container">
+        <span class="navbar-brand">Realtime Cow Recognition System</span>
+        <span class="navbar-brand">{{ processingRate }} images/sec</span>
+      </div>
+    </nav>
+
+    <div class="container">
+      <transition-group name="slide-fade" tag="div">
+        <div class="jumbotron" v-for="result in results" v-bind:key="result.id">
+          <div class="row">
+
+            <div class="col">
+              <img :src="result.url" style="max-height: 200px">
+            </div>
+
+            <div class="col">
+                <span v-if="result.predictedTagName === 'cow_1'" class="emoji"> 🐮 cow_1</span>
+                <span v-if="result.predictedTagName === 'cow_10'" class="emoji"> 🐮cow_10</span>
+                <span v-if="result.predictedTagName === 'cow_11'" class="emoji"> 🐮 cow_11</span>
+                <span v-if="result.predictedTagName === 'cow_12'" class="emoji">🐮cow_12</span>
+                <span v-if="result.predictedTagName === 'cow_13'" class="emoji">🐮 cow_13</span>
+                <span v-if="result.predictedTagName === 'cow_14'" class="emoji">🐮cow_14 </span>
+                <span v-if="result.predictedTagName === 'cow_15'" class="emoji">🐮 cow_15</span>
+                <span v-if="result.predictedTagName === 'cow_16'" class="emoji">🐮 cow_16</span>
+                <span v-if="result.predictedTagName === 'cow_17'" class="emoji">🐮 cow_17</span>
+                <span v-if="result.predictedTagName === 'cow_19'" class="emoji">🐮 cow_19</span>
+                <span v-if="result.predictedTagName === 'cow_2'" class="emoji"> 🐮 cow_2</span>
+                <span v-if="result.predictedTagName === 'cow_20'" class="emoji">🐮 cow_20</span>
+                <span v-if="result.predictedTagName === 'cow_21'" class="emoji">🐮 cow_21</span>
+                <span v-if="result.predictedTagName === 'cow_24'" class="emoji">🐮 cow_24</span>
+                <span v-if="result.predictedTagName === 'cow_27'" class="emoji">🐮 cow_27</span>
+                <span v-if="result.predictedTagName === 'cow_28'" class="emoji">🐮 cow_28</span>
+                <span v-if="result.predictedTagName === 'cow_29'" class="emoji">🐮 cow_29</span>
+                <span v-if="result.predictedTagName === 'cow_3'" class="emoji">🐮 cow_3</span>
+                <span v-if="result.predictedTagName === 'cow_32'" class="emoji">🐮cow_32</span>
+                <span v-if="result.predictedTagName === 'cow_34'" class="emoji">🐮cow_34</span>
+                <span v-if="result.predictedTagName === 'cow_35'" class="emoji">🐮cow_35</span>
+                <span v-if="result.predictedTagName === 'cow_36'" class="emoji">🐮cow_36</span>
+                <span v-if="result.predictedTagName === 'cow_38'" class="emoji">🐮cow_38</span>
+                <span v-if="result.predictedTagName === 'cow_39'" class="emoji">🐮cow_39</span>
+                <span v-if="result.predictedTagName === 'cow_40'" class="emoji">🐮cow_40</span>
+                <span v-if="result.predictedTagName === 'cow_42'" class="emoji">🐮cow_42</span>
+                <span v-if="result.predictedTagName === 'cow_45'" class="emoji">🐮cow_45</span>
+                <span v-if="result.predictedTagName === 'cow_46'" class="emoji">🐮cow_46</span>
+                <span v-if="result.predictedTagName === 'cow_47'" class="emoji">🐮cow_47</span>
+                <span v-if="result.predictedTagName === 'cow_49'" class="emoji">🐮cow_49</span>
+                <span v-if="result.predictedTagName === 'cow_5'" class="emoji">🐮cow_5</span>
+                <span v-if="result.predictedTagName === 'cow_51'" class="emoji">🐮cow_51</span>
+                <span v-if="result.predictedTagName === 'cow_53'" class="emoji">🐮cow_53</span>
+                <span v-if="result.predictedTagName === 'cow_54'" class="emoji">🐮cow_54</span>
+                <span v-if="result.predictedTagName === 'cow_55'" class="emoji">🐮cow_55</span>
+                <span v-if="result.predictedTagName === 'cow_56'" class="emoji">🐮cow_56</span>
+                <span v-if="result.predictedTagName === 'cow_57'" class="emoji">🐮cow_57</span>
+                <span v-if="result.predictedTagName === 'cow_58'" class="emoji">🐮cow_58</span>
+                <span v-if="result.predictedTagName === 'cow_59'" class="emoji">🐮cow_59</span>
+                <span v-if="result.predictedTagName === 'cow_60'" class="emoji">🐮cow_60</span>
+                <span v-if="result.predictedTagName === 'cow_64'" class="emoji">🐮cow_64</span>
+                <span v-if="result.predictedTagName === 'cow_65'" class="emoji">🐮cow_65</span>
+                <span v-if="result.predictedTagName === 'cow_66'" class="emoji">🐮cow_66</span>
+                <span v-if="result.predictedTagName === 'cow_67'" class="emoji">🐮cow_67</span>
+                <span v-if="result.predictedTagName === 'cow_68'" class="emoji">🐮cow_68</span>
+                <span v-if="result.predictedTagName === 'cow_7'" class="emoji">🐮cow_7</span>
+                <span v-if="result.predictedTagName === 'cow_73'" class="emoji">🐮cow_73</span>
+                <span v-if="result.predictedTagName === 'cow_74'" class="emoji">🐮cow_74</span>
+                <span v-if="result.predictedTagName === 'cow_75'" class="emoji">🐮cow_75</span>
+                <span v-if="result.predictedTagName === 'cow_76'" class="emoji">🐮cow_76</span>
+                <span v-if="result.predictedTagName === 'cow_77'" class="emoji">🐮cow_77</span>
+                <span v-if="result.predictedTagName === 'cow_78'" class="emoji">🐮cow_78</span>
+                <span v-if="result.predictedTagName === 'cow_8'" class="emoji">🐮cow_8</span>
+                <span v-if="result.predictedTagName === 'cow_82'" class="emoji">🐮cow_82</span>
+                <span v-if="result.predictedTagName === 'cow_87'" class="emoji">🐮cow_87</span>
+                <span v-if="result.predictedTagName === 'cow_88'" class="emoji">🐮cow_88</span>
+                <span v-if="result.predictedTagName === 'cow_9'" class="emoji"> 🐮cow_9</span>
+            </div>
+          </div>
+        </div>
+      </transition-group>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@3.0.0-preview8.19405.7/dist/browser/signalr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.12/Rx.min.js" integrity="sha256-cwLuyVzYZFWhnQzXHj8mufd8tyxMZo1Pso0QNA5cqlI=" crossorigin="anonymous"></script>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        results: [],
+        processingRate: 0
+      },
+      mounted: function () {
+        let count = 0
+        const imagesSubject = new Rx.Subject()
+        const timeWindow = 6000
+        imagesSubject.bufferTime(timeWindow, 1000).subscribe(function(results) {
+          this.processingRate = (results.length / timeWindow * 1000).toFixed(2)
+        }.bind(this))
+        const apiBaseUrl = 'https://cowimageclassify-apim.azure-api.net/cowrecogfunctions';
+        //const apiBaseUrl = 'http://localhost:7071/api';
+        //const apiBaseUrl = 'https://cowrecogfunctions.azurewebsites.net/api';
+        const connection = new signalR.HubConnectionBuilder()
+          .withUrl(`${apiBaseUrl}?subscription-key=b99c6218b8ae44a7bc9763f7b7458659`)
+          .withAutomaticReconnect()
+          .build()
+        connection.on('newResult', function (result) {
+          result.id = count++
+          this.results.unshift(result)
+          imagesSubject.next(result)
+          if (this.results.length > 50) {
+            this.results.length = 50
+          }
+        }.bind(this))
+        this.connection = connection
+
+        return connection.start()
+      },
+      beforeDestroy: function () {
+        if (this.connection) {
+          this.connection.stop()
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
