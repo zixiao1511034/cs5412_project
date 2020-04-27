@@ -17,9 +17,6 @@ block_blob_service = BlockBlobService(
     account_key=account_key
 )
 
-
-
-
 def process_single_file(filename):
     
     with open('../test_image/{filename}'.format(filename=filename), 'rb') as image:
