@@ -43,10 +43,10 @@ for id in cow_ids:
         folder=id
     )
     image_path = glob.glob(os.path.join(data_path, "*.jpg"))
-    if len(image_path) < 5:
+    if len(image_path) < 7:
         continue
     random.shuffle(image_path)
-    for image in image_path[:5]:
+    for image in image_path[:7]:
         image = image.replace("\\", "/")
         print("uploading cow_{id}".format(id=id))
         with open(image, "rb") as image_contents:

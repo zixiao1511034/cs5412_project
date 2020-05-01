@@ -183,6 +183,7 @@ def update_orientation(image):
 def predict_image(image):
 
     image = Image.open(image)
+    # image = Image.fromarray(image)
     # log_msg('Predicting image')
     try:
         if image.mode != "RGB":
