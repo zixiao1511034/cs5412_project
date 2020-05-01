@@ -64,6 +64,7 @@ def predict_url_handler(project=None, publishedName=None):
     try:
         image_url = json.loads(request.get_data().decode('utf-8'))['url']
         results = predict_url(image_url)
+        results["url"] = image_url
         return jsonify(results)
     except Exception as e:
         print('EXCEPTION:', str(e))

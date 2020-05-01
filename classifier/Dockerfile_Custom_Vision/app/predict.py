@@ -215,21 +215,22 @@ def predict_image(image):
             predictions, = sess.run(prob_tensor, {input_node: [cropped_image] })
             
             result = []
+            highest_prediction = None
             for p, label in zip(predictions, labels):
                 truncated_probablity = np.float64(round(p,8))
                 if truncated_probablity > 1e-8:
-                    result.append({
-                        'tagName': label,
-                        'probability': truncated_probablity,
-                        'tagId': '',
-                        'boundingBox': None })
+                    prediction = {
+                        "tagName": label,
+                        "probability": truncated_probablity }
+                    result.append(prediction)
+                    if not highest_prediction or prediction["probability"] > highest_prediction["probability"]:
+                        highest_prediction = prediction
 
-            response = { 
-                'id': '',
-                'project': '',
-                'iteration': '',
-                'created': datetime.utcnow().isoformat(),
-                'predictions': result 
+            response = {
+                "created": datetime.utcnow().isoformat(),
+                "predictedTagName": highest_prediction["tagName"],
+                "predictedprobability": highest_prediction["probability"],
+                "url" : ""
             }
 
             log_msg("Results: " + str(response))

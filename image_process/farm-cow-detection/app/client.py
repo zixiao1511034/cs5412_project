@@ -24,6 +24,7 @@ block_blob_service = BlockBlobService(
     account_key=account_key
 )
 
+<<<<<<< HEAD
 
 queue = QueueService(connection_string="")
 queue.encode_function = QueueMessageFormat.text_base64encode
@@ -33,6 +34,11 @@ def process_single_file(filename, blob, dirname=""):
     # image = {'imageData': open('../test_image/{filename}'.format(filename=filename), 'rb')}
     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     # with open('{dirname}/{filename}'.format(filename=filename, dirname=dirname), 'rb') as image:
+=======
+def process_single_file(filename):
+    
+    with open('../test_image/{filename}'.format(filename=filename), 'rb') as image:
+>>>>>>> 7740c8a45638c7a61ec745150656e646b92aef59
     
         # predict_start = time.time()
         # response = requests.post(API_ENDPOINT, files=image)
