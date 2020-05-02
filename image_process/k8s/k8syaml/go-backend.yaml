@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cow-edge-go-api
+spec:
+  selector:
+    matchLabels:
+      app: cow-edge-go-api
+  template:
+    metadata:
+      labels:
+        app: cow-edge-go-api # the label for the pods and the deployments
+    spec:
+      containers:
+      - name: cow-edge-go-api
+        image: cowcontainer.azurecr.io/cowedgeserver-go:v2 # IMPORTANT: update with your own repository
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080 # the application listens to this port
+        resources:
+          requests: # minimum resources required
+            cpu: 500m
+            memory: 64Mi
+          limits: # maximum resources allocated
+            cpu: 1000m
+            memory: 256Mi

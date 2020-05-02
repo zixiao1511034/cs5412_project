@@ -12,7 +12,7 @@ COPY app /app
 # RUN pip install opencv-python
 
 # Expose the port
-EXPOSE 80
+EXPOSE 1000
 
 # Set the working directory
 WORKDIR /app

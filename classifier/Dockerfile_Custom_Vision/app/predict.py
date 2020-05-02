@@ -8,6 +8,9 @@ from PIL import Image
 import numpy as np
 import sys
 
+def log_msg(msg):
+    print("{}: {}".format(datetime.now(),msg))
+
 try:
     import cv2
     use_opencv = True
@@ -29,6 +32,21 @@ graph_def = tf.compat.v1.GraphDef()
 labels = []
 
 def initialize():
+    #tf.debugging.set_log_device_placement(True)
+    log_msg("GPU test")
+    print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+    gpus = tf.config.experimental.list_physical_devices('GPU')
+    
+    if gpus:
+    # Restrict TensorFlow to only use the first GPU
+        try:
+            tf.config.experimental.set_visible_devices(gpus[0], 'GPU')
+            logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+            print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPU")
+        except RuntimeError as e:
+            # Visible devices must be set before GPUs have been initialized
+            print(e)
+
     print('Loading model...',end=''),
     with open(filename, 'rb') as f:
         graph_def.ParseFromString(f.read())
@@ -51,8 +69,6 @@ def initialize():
         labels = [l.strip() for l in lf.readlines()]
     print(len(labels), 'found. Success!')
 
-def log_msg(msg):
-    print("{}: {}".format(datetime.now(),msg))
 
 def extract_bilinear_pixel(img, x, y, ratio, xOrigin, yOrigin):
     xDelta = (x + 0.5) * ratio - 0.5

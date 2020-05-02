@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cow-id-prediction-api
+spec:
+  selector:
+    matchLabels:
+      app: cow-id-prediction-api
+  template:
+    metadata:
+      labels:
+        app: cow-id-prediction-api # the label for the pods and the deployments
+    spec:
+      containers:
+      - name: cow-id-prediction-api
+        image: cowcontainer.azurecr.io/cowrecog:v3 # IMPORTANT: update with your own repository
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 1000 # the application listens to this port
+        resources:
+          requests: # minimum resources required
+            cpu: 1000m
+            memory: 128Mi
+          limits: # maximum resources allocated
+            cpu: 2000m
+            memory: 768Mi

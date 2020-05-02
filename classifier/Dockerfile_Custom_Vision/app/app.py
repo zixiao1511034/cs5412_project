@@ -53,7 +53,7 @@ def predict_image_handler(project=None, publishedName=None):
 # Like the CustomVision.ai Prediction service /url route handles url's
 # in the body of hte request of the form:
 #     { 'Url': '<http url>'}  
-@app.route('/url', methods=['POST'])
+@app.route('/', methods=['POST'])
 @app.route('/<project>/url', methods=['POST'])
 @app.route('/<project>/url/nostore', methods=['POST'])
 @app.route('/<project>/classify/iterations/<publishedName>/url', methods=['POST'])
@@ -75,5 +75,5 @@ if __name__ == '__main__':
     initialize()
 
     # Run the server
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=1000)
 

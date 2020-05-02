@@ -29,7 +29,7 @@ img.preview {
       Upload
     </button>
 
-    
+    <div class="alert alert-light" role="alert"> {{ result }}  </div>
     <div class="btn"> Prediction: {{ message }}  </div>
      
     <div style = "text-align: center" v-if="imageData.length > 0">
@@ -49,7 +49,8 @@ export default {
       currentFile: undefined,
       progress: 0,
       message: "",
-      imageData: ""
+      imageData: "",
+      result: ""
     };
   },
   methods: {
@@ -60,6 +61,7 @@ export default {
       this.progress = 0;
       this.currentFile = this.selectedFiles.item(0);
       this.message = "";
+      this.result = ""
 
       var reader = new FileReader();
       // Define a callback function to run, when FileReader finishes its job
@@ -72,9 +74,11 @@ export default {
       reader.readAsDataURL(this.currentFile);
 
       UploadService.upload(this.currentFile, event => {
-        this.progress = Math.round((100 * event.loaded) / event.total);
-      })
-        .then(response => {
+        this.result = "We are working hard, the result will coom soon :)"
+        this.progress = Math.round((80 * event.loaded) / event.total);
+      }).then(response => {
+          this.result = "Yeah! Done!"
+          this.progress = 100
           console.log(response.data)
           this.message = response.data.predictedTagName;
         })
@@ -85,6 +89,8 @@ export default {
         });
       this.selectedFiles = undefined;
     }
+    
   }
 };
+
 </script>
