@@ -131,7 +131,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@3.0.0-preview8.19405.7/dist/browser/signalr.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.12/Rx.min.js" integrity="sha256-cwLuyVzYZFWhnQzXHj8mufd8tyxMZo1Pso0QNA5cqlI=" crossorigin="anonymous"></script>
-
+  <script src="priorityqueue.js"> </script>
   <script>
     const app = new Vue({
       el: '#app',
@@ -143,6 +143,10 @@
         let count = 0
         const imagesSubject = new Rx.Subject()
         const timeWindow = 6000
+        var dict = {}
+        var queue1 = new PriorityQueue();
+        var queue2 = new PriorityQueue();
+        // console.log(queue1.size())
         imagesSubject.bufferTime(timeWindow, 1000).subscribe(function(results) {
           this.processingRate = (results.length / timeWindow * 1000).toFixed(2)
         }.bind(this))
@@ -155,8 +159,19 @@
           .build()
         connection.on('newResult', function (result) {
           result.id = count++
-          this.results.unshift(result)
-          imagesSubject.next(result)
+          queue1.push(count)
+          //console.log(result.id)
+          curr_result_id = Number(result.url.split("/")[4].split(".")[0])
+          queue2.push(curr_result_id)
+          dict[curr_result_id] = result
+          while(queue1.size()>0 && queue2.size()>0 && queue2.peek() == queue1.peek()){
+              out_res = queue1.pop();
+              queue2.pop();
+              //console.log(out_res)
+              result = dict[out_res]
+              this.results.unshift(result)
+              imagesSubject.next(result)
+          }
           if (this.results.length > 50) {
             this.results.length = 50
           }
