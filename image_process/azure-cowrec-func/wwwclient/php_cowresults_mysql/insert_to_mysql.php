@@ -18,8 +18,8 @@ echo "Connected successfully";
 <?php
 $servername = "127.0.0.1";
 $username = "root";
-$password = "xusiquan1997";
-$dbname = "cowid";
+$password = "dbpassword";
+$dbname = "dbname";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -37,7 +37,7 @@ if(isset($_GET['id'])){
 }
 // $sql = "INSERT INTO cowresults (Cowurl, Cowid)
 // VALUES ( ".$_GET['url'].",".$_GET['id']." )";
-$sql = "INSERT INTO cowresults (Cowurl, Cowid)
+$sql = "INSERT INTO cowresultsß (Cowurl, Cowid)
 VALUES ('".$url."','".$id."')";
 
 if ($conn->query($sql) === TRUE) {
